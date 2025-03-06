@@ -6,7 +6,7 @@
     <title>Normal Soundtag</title>
     <style>
         body {
-            background-color: #1a1a1a; /* Черный фон */
+            background-color: #1a1a1a; /* Фон */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,12 +31,15 @@
             cursor: pointer;
             margin-top: 20px;
             text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
         }
         .telegram-button img {
             width: 30px;
             height: 30px;
-            border-radius: 50%;
+            border-radius: 50%; /* Сделать иконку круглой */
             margin-right: 10px;
+            object-fit: cover; /* Сохранение пропорций */
         }
         .telegram-button:hover {
             background-color: #5b6057;
@@ -56,9 +59,9 @@
 
 <img src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
 
-<!-- Кнопка Telegram с локальной иконкой -->
+<!-- Кнопка Telegram с иконкой -->
 <a class="telegram-button" href="https://t.me/normalsndtag" target="_blank">
-    <img src="telegramm.jpg" alt="Telegram Icon">
+    <img src="telegramm.png" alt="Telegram Icon">
     Телеграм
 </a>
 
