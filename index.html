@@ -6,23 +6,48 @@
     <title>Normal Soundtag</title>
     <style>
         body {
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; /* Черный фон сайта */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            flex-direction: column; /* Для вертикального расположения кнопок */
         }
         img {
             cursor: pointer;
             width: 40vw;
-            max-width: 500px;
+            max-width: 300px;
             height: auto;
+        }
+        .telegram-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #6c7372; /* Цвет фона кнопки */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px; /* Немного ниже первой кнопки */
+            text-decoration: none; /* Убираем подчеркивание у текста */
+        }
+        .telegram-button img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%; /* Круглая форма */
+            margin-right: 10px; /* Отступ между иконкой и текстом */
+        }
+        .telegram-button:hover {
+            background-color: #5b6057; /* Цвет при наведении на кнопку */
         }
         @media (max-width: 768px) {
             img {
                 width: 60vw;
-                max-width: 600px;
+                max-width: 400px;
+            }
+            .telegram-button {
+                padding: 12px 24px;
             }
         }
     </style>
@@ -30,6 +55,12 @@
 <body>
 
 <img src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
+
+<!-- Кнопка Telegram с ссылкой -->
+<a class="telegram-button" href="https://t.me/normalsndtag" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon_%282019%29.svg" alt="Telegram Icon">
+    Телеграм
+</a>
 
 <script>
     const sounds = [
