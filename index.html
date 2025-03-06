@@ -6,7 +6,7 @@
     <title>Normal Soundtag</title>
     <style>
         body {
-            background-color: #1a1a1a; /* Фон */
+            background-color: #1a1a1a; /* Цвет фона */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,38 +14,47 @@
             margin: 0;
             flex-direction: column;
         }
-        img {
+
+        /* Кнопка-звук (изображение) */
+        .sound-button {
             cursor: pointer;
             width: 40vw;
             max-width: 300px;
             height: auto;
         }
+
+        /* Кнопка Telegram */
         .telegram-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #6c7372; /* Цвет фона кнопки */
+            font-family: "Arial", sans-serif; /* Шрифт Arial */
+            font-size: 18px;
+            font-weight: bold;
             color: white;
+            background-color: #6c7372; /* Цвет фона кнопки */
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
             margin-top: 20px;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .telegram-button img {
             width: 30px;
             height: 30px;
-            border-radius: 50%; /* Сделать иконку круглой */
+            border-radius: 50%; /* Круглая иконка */
             margin-right: 10px;
             object-fit: cover; /* Сохранение пропорций */
         }
+
         .telegram-button:hover {
             background-color: #5b6057;
         }
+
+        /* Адаптация для мобильных устройств */
         @media (max-width: 768px) {
-            img {
+            .sound-button {
                 width: 60vw;
                 max-width: 400px;
             }
@@ -57,11 +66,12 @@
 </head>
 <body>
 
-<img src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
+<!-- Кнопка-звук (изображение) -->
+<img class="sound-button" src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
 
-<!-- Кнопка Telegram с иконкой -->
+<!-- Кнопка Telegram -->
 <a class="telegram-button" href="https://t.me/normalsndtag" target="_blank">
-    <img src="telegramm.jpg" alt="Telegram Icon">
+    <img src="telegramm.png" alt="Telegram Icon">
     Телеграм
 </a>
 
@@ -84,7 +94,7 @@
     let isPlaying = false;
 
     function playRandomSound() {
-        if (isPlaying) return;
+        if (isPlaying) return; // Не запускаем заново, если уже играет
 
         const randomIndex = Math.floor(Math.random() * sounds.length);
         audio.src = sounds[randomIndex];
