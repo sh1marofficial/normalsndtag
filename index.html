@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normal Free Soundtag Site</title>
+    <title>Normal Soundtag</title>
     <style>
         body {
-            background-color: #1a1a1a; /* Темно-серый фон, близкий к черному */
+            background-color: #1a1a1a; /* Темно-серый фон, почти черный */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,9 +15,17 @@
         }
         img {
             cursor: pointer;
-            width: 40vw; /* 40% ширины экрана */
+            width: 40vw; /* 40% ширины экрана для ПК */
             max-width: 400px; /* Но не больше 300px */
             height: auto;
+        }
+
+        /* Медиазапрос для телефонов */
+        @media (max-width: 768px) {
+            img {
+                width: 60vw; /* 60% ширины экрана для мобильных устройств */
+                max-width: 400px; /* Максимальный размер изображения на мобильных устройствах */
+            }
         }
     </style>
 </head>
