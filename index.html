@@ -7,19 +7,17 @@
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
             margin-top: 50px;
         }
         img {
             cursor: pointer;
-            width: 200px; /* Можно изменить размер */
+            width: 300px; /* Увеличенный размер кнопки */
             height: auto;
         }
     </style>
 </head>
 <body>
 
-<h1>Нажмите на изображение, чтобы включить звук</h1>
 <img src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
 
 <script>
@@ -37,7 +35,7 @@
 
         const randomIndex = Math.floor(Math.random() * sounds.length);
         audio.src = sounds[randomIndex];
-        audio.loop = true; // Зацикливаем звук
+        audio.loop = true; // Бесконечное воспроизведение
         audio.play();
         isPlaying = true;
     }
