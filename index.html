@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Случайные звуки</title>
+    <title>Случайный бесконечный звук</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
+            margin-top: 50px;
         }
         img {
             cursor: pointer;
-            width: 200px;
+            width: 200px; /* Можно изменить размер */
             height: auto;
-            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
-<h1>Нажми на изображение, чтобы включить звук</h1>
-<img src="IMG_20250219_093726.jpg" alt="Нажми меня" onclick="playRandomSound()">
+<h1>Нажмите на изображение, чтобы включить звук</h1>
+<img src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
 
 <script>
     const sounds = [
@@ -29,21 +29,17 @@
         "sound3.mp3"
     ];
 
-    let isPlaying = false;
     let audio = new Audio();
+    let isPlaying = false;
 
     function playRandomSound() {
-        if (isPlaying) return; // Если звук уже играет, ничего не делаем
+        if (isPlaying) return; // Если звук уже играет, не запускаем новый
 
         const randomIndex = Math.floor(Math.random() * sounds.length);
         audio.src = sounds[randomIndex];
+        audio.loop = true; // Зацикливаем звук
         audio.play();
         isPlaying = true;
-
-        // Когда звук закончится, можно будет снова нажать на картинку
-        audio.onended = function() {
-            isPlaying = false;
-        };
     }
 </script>
 
