@@ -6,13 +6,13 @@
     <title>Normal Soundtag</title>
     <style>
         body {
-            background-color: #1a1a1a; /* Черный фон сайта */
+            background-color: #1a1a1a; /* Черный фон */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            flex-direction: column; /* Для вертикального расположения кнопок */
+            flex-direction: column;
         }
         img {
             cursor: pointer;
@@ -29,17 +29,17 @@
             padding: 10px 20px;
             border-radius: 25px;
             cursor: pointer;
-            margin-top: 20px; /* Немного ниже первой кнопки */
-            text-decoration: none; /* Убираем подчеркивание у текста */
+            margin-top: 20px;
+            text-decoration: none;
         }
         .telegram-button img {
             width: 30px;
             height: 30px;
-            border-radius: 50%; /* Круглая форма */
-            margin-right: 10px; /* Отступ между иконкой и текстом */
+            border-radius: 50%;
+            margin-right: 10px;
         }
         .telegram-button:hover {
-            background-color: #5b6057; /* Цвет при наведении на кнопку */
+            background-color: #5b6057;
         }
         @media (max-width: 768px) {
             img {
@@ -56,56 +56,44 @@
 
 <img src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
 
-<!-- Кнопка Telegram с ссылкой -->
+<!-- Кнопка Telegram с локальной иконкой -->
 <a class="telegram-button" href="https://t.me/normalsndtag" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Telegram_icon_%282019%29.svg" alt="Telegram Icon">
+    <img src="telegramm.jpg" alt="Telegram Icon">
     Телеграм
 </a>
 
 <script>
     const sounds = [
-        "https://www.dropbox.com/s/66shti8y6x7olrr/drist%5B1%5D.mp3?st=nio875vg&dl=1",
-        "https://www.dropbox.com/s/68r0fhh654h736b/jenschina%5B1%5D.mp3?st=1a5q7wjb&dl=1",
-        "https://www.dropbox.com/s/8xu7k3pras6fh7b/mama%5B1%5D.mp3?st=xjbgmcxq&dl=1",
-        "https://www.dropbox.com/s/l7bz1q5hey5c6u5/esche%5B1%5D.mp3?st=z1nqfpmo&dl=1",
-        "https://www.dropbox.com/s/461xc744wwrwko3/da_idi_ti%5B1%5D.mp3?st=s2pzs8w8&dl=1",
-        "https://www.dropbox.com/s/uqw5dzdj552zrns/da_eto_ne_ya_penisi_delayu%5B1%5D.mp3?st=awarl5h0&dl=1",
-        "https://www.dropbox.com/s/s5agh6x5kglvy5f/pojarnaya_trevoga%5B1%5D.mp3?st=0243gyep&dl=1",
-        "https://www.dropbox.com/s/5nve4pfc8ee7iuu/caca%5B1%5D.mp3?st=qnm82u6j&dl=1",
-        "https://www.dropbox.com/s/vgmbmboqhodwk3p/blyaaaaaaaaaat%5B1%5D.mp3?st=ssr2637r&dl=1",
-        "https://www.dropbox.com/s/y3dtv6ui14eflzm/babulka%5B1%5D.mp3?st=8sjz4gqd&dl=1",
-        "https://www.dropbox.com/s/w75jkiolr0zm7g4/skin_pojalusta_siski%5B1%5D.mp3?st=zmpwai5i&dl=1",
-        "https://www.dropbox.com/s/fumdxj7f2puvzhi/fortnite-default-dance-bass-boosted.mp3?st=rhyx8z8b&dl=0",
-        "https://www.dropbox.com/s/axo49eomyewgjbg/o-kurwa-rakiet-full_TZKm8q4.mp3?st=s2oavw38&dl=1",
-        "https://www.dropbox.com/s/dht18uxkhz99pdb/sigma-boy-bass-boosted-caca.mp3?st=niadi8k2&dl=1",
-        "https://www.dropbox.com/s/jbegn8cg3c56jjf/soviet108.mp3?st=kotezrye&dl=1",
-        "https://www.dropbox.com/s/u4kqje18av1hume/tralalero-tralala.mp3?st=wpgu10hh&dl=1",
-        "https://www.dropbox.com/s/tu7jwz3k3xo7v68/ston_9zi2M1N.mp3?st=ns152aze&dl=1",
-        "https://www.dropbox.com/s/04w0ta6a792w0sv/linganguli.mp3?st=r5uqbj9z&dl=1",
-        "https://www.dropbox.com/s/10mewcf9jkiri5j/pokaz-dupe.mp3?st=72n08lpn&dl=1"
+        "https://www.dropbox.com/s/66shti8y6x7olrr/drist%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/68r0fhh654h736b/jenschina%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/8xu7k3pras6fh7b/mama%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/l7bz1q5hey5c6u5/esche%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/461xc744wwrwko3/da_idi_ti%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/uqw5dzdj552zrns/da_eto_ne_ya_penisi_delayu%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/s5agh6x5kglvy5f/pojarnaya_trevoga%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/5nve4pfc8ee7iuu/caca%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/vgmbmboqhodwk3p/blyaaaaaaaaaat%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/y3dtv6ui14eflzm/babulka%5B1%5D.mp3?dl=1",
+        "https://www.dropbox.com/s/w75jkiolr0zm7g4/skin_pojalusta_siski%5B1%5D.mp3?dl=1"
     ];
 
     let audio = new Audio();
     let isPlaying = false;
 
-    // Функция для воспроизведения случайного звука
     function playRandomSound() {
-        if (isPlaying) return; // Если звук уже играет, не запускаем новый
+        if (isPlaying) return;
 
         const randomIndex = Math.floor(Math.random() * sounds.length);
         audio.src = sounds[randomIndex];
 
-        // Проверяем, есть ли путь к файлу и файл существует
         audio.oncanplaythrough = function() {
-            audio.loop = true; // Бесконечное воспроизведение
-            audio.play().catch(function(error) {
-                console.error("Ошибка воспроизведения звука: ", error);
-            });
+            audio.loop = true;
+            audio.play().catch(error => console.error("Ошибка воспроизведения: ", error));
             isPlaying = true;
         };
 
         audio.onerror = function() {
-            console.error("Ошибка при загрузке файла: " + audio.src);
+            console.error("Ошибка при загрузке: " + audio.src);
         };
     }
 </script>
