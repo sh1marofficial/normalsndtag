@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normal Soundtag</title>
+    <title>Normal Soundtag</title> <!-- Изменено на Normal Soundtag -->
     <style>
         body {
             background-color: #1a1a1a; /* Темно-серый фон, почти черный */
@@ -16,7 +16,7 @@
         img {
             cursor: pointer;
             width: 40vw; /* 40% ширины экрана для ПК */
-            max-width: 400px; /* Но не больше 300px */
+            max-width: 300px; /* Но не больше 300px */
             height: auto;
         }
 
@@ -51,14 +51,25 @@
     let audio = new Audio();
     let isPlaying = false;
 
+    // Функция для воспроизведения случайного звука
     function playRandomSound() {
         if (isPlaying) return; // Если звук уже играет, не запускаем новый
 
         const randomIndex = Math.floor(Math.random() * sounds.length);
         audio.src = sounds[randomIndex];
-        audio.loop = true; // Бесконечное воспроизведение
-        audio.play();
-        isPlaying = true;
+
+        // Проверяем, есть ли путь к файлу и файл существует
+        audio.oncanplaythrough = function() {
+            audio.loop = true; // Бесконечное воспроизведение
+            audio.play().catch(function(error) {
+                console.error("Ошибка воспроизведения звука: ", error);
+            });
+            isPlaying = true;
+        };
+
+        audio.onerror = function() {
+            console.error("Ошибка при загрузке файла: " + audio.src);
+        };
     }
 </script>
 
