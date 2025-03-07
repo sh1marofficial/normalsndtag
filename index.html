@@ -66,7 +66,7 @@
 <img class="sound-button" src="IMG_20250219_093726.jpg" alt="Запуск звука">
 
 <a class="telegram-button" href="https://t.me/normalsndtag" target="_blank">
-    <img src="telegramm.jpg" alt="Telegram Icon">
+    <img src="telegramm.png" alt="Telegram Icon">
     Телеграм
 </a>
 
@@ -88,41 +88,28 @@
     let audio = new Audio();
     let isPlaying = false;
 
-    async function playRandomSound() {
+    function playRandomSound() {
         if (isPlaying) return;
 
         const randomIndex = Math.floor(Math.random() * sounds.length);
         const soundURL = sounds[randomIndex];
 
-        try {
-            const response = await fetch(soundURL);
-            const blob = await response.blob();
-            const objectURL = URL.createObjectURL(blob);
+        audio.src = soundURL;
+        audio.loop = true;
+        audio.volume = 1; // Максимальная громкость
 
-            audio.src = objectURL;
-            audio.loop = true;
-            audio.volume = 1; // Максимальная громкость
+        audio.play().then(() => {
+            isPlaying = true;
+        }).catch(error => {
+            console.error("Ошибка воспроизведения:", error);
+        });
 
-            audio.play().then(() => {
-                isPlaying = true;
-            }).catch(error => {
-                console.error("Ошибка воспроизведения:", error);
-            });
-
-        } catch (error) {
-            console.error("Ошибка загрузки файла:", soundURL, error);
-        }
+        audio.onerror = function () {
+            console.error("Ошибка загрузки файла:", soundURL);
+        };
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const context = new (window.AudioContext || window.webkitAudioContext)();
-        
-        if (context.state === "suspended") {
-            context.resume().then(playRandomSound);
-        } else {
-            playRandomSound();
-        }
-    });
+    document.querySelector(".sound-button").addEventListener("click", playRandomSound);
 </script>
 
 </body>
