@@ -63,7 +63,7 @@
 </head>
 <body>
 
-<img class="sound-button" src="IMG_20250219_093726.jpg" alt="Запуск звука" onclick="playRandomSound()">
+<img class="sound-button" src="IMG_20250219_093726.jpg" alt="Запуск звука">
 
 <a class="telegram-button" href="https://t.me/normalsndtag" target="_blank">
     <img src="telegramm.png" alt="Telegram Icon">
@@ -72,46 +72,57 @@
 
 <script>
     const sounds = [
-        "https://www.dropbox.com/s/66shti8y6x7olrr/drist%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/68r0fhh654h736b/jenschina%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/8xu7k3pras6fh7b/mama%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/l7bz1q5hey5c6u5/esche%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/461xc744wwrwko3/da_idi_ti%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/uqw5dzdj552zrns/da_eto_ne_ya_penisi_delayu%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/s5agh6x5kglvy5f/pojarnaya_trevoga%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/5nve4pfc8ee7iuu/caca%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/vgmbmboqhodwk3p/blyaaaaaaaaaat%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/y3dtv6ui14eflzm/babulka%5B1%5D.mp3?dl=1",
-        "https://www.dropbox.com/s/w75jkiolr0zm7g4/skin_pojalusta_siski%5B1%5D.mp3?dl=1"
+        "https://www.dropbox.com/s/66shti8y6x7olrr/drist%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/68r0fhh654h736b/jenschina%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/8xu7k3pras6fh7b/mama%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/l7bz1q5hey5c6u5/esche%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/461xc744wwrwko3/da_idi_ti%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/uqw5dzdj552zrns/da_eto_ne_ya_penisi_delayu%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/s5agh6x5kglvy5f/pojarnaya_trevoga%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/5nve4pfc8ee7iuu/caca%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/vgmbmboqhodwk3p/blyaaaaaaaaaat%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/y3dtv6ui14eflzm/babulka%5B1%5D.mp3?raw=1",
+        "https://www.dropbox.com/s/w75jkiolr0zm7g4/skin_pojalusta_siski%5B1%5D.mp3?raw=1"
     ];
 
-    let audio = null;
+    let audio = new Audio();
     let isPlaying = false;
 
-    function playRandomSound() {
+    async function playRandomSound() {
         if (isPlaying) return;
 
         const randomIndex = Math.floor(Math.random() * sounds.length);
         const soundURL = sounds[randomIndex];
 
-        if (!audio) {
-            audio = new Audio();
+        try {
+            const response = await fetch(soundURL);
+            const blob = await response.blob();
+            const objectURL = URL.createObjectURL(blob);
+
+            audio.src = objectURL;
             audio.loop = true;
             audio.volume = 1; // Максимальная громкость
+
+            audio.play().then(() => {
+                isPlaying = true;
+            }).catch(error => {
+                console.error("Ошибка воспроизведения:", error);
+            });
+
+        } catch (error) {
+            console.error("Ошибка загрузки файла:", soundURL, error);
         }
-
-        audio.src = soundURL;
-
-        audio.play().then(() => {
-            isPlaying = true;
-        }).catch(error => {
-            console.error("Ошибка воспроизведения:", error);
-        });
-
-        audio.onerror = function () {
-            console.error("Ошибка загрузки файла:", soundURL);
-        };
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const context = new (window.AudioContext || window.webkitAudioContext)();
+        
+        if (context.state === "suspended") {
+            context.resume().then(playRandomSound);
+        } else {
+            playRandomSound();
+        }
+    });
 </script>
 
 </body>
